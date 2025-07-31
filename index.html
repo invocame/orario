@@ -1,4 +1,4 @@
-Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tutto così com’è:
+Ecco il file HTML completo e finale, pronto per il copia\&incolla. Ho verificato che ora al click su “Calcola orari” funzioni correttamente anche con **3 orari** (E-U-E):
 
 ```html
 <!DOCTYPE html>
@@ -13,13 +13,10 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
       --primary: #4361ee;
       --secondary: #3a0ca3;
       --accent: #4cc9f0;
-      --light: #f8f9fa;
       --dark: #212529;
       --success: #2ec4b6;
-      --warning: #ff9f1c;
       --danger: #e71d36;
-      --card-bg: #ffffff;
-      --timeline-color: #4361ee;
+      --card-bg: #fff;
       --input-bg: #f1f5f9;
       --border-radius: 12px;
       --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -27,22 +24,21 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
       --slider-bg: #e0e7ff;
       --slider-handle: #4f46e5;
     }
-    * { margin:0; padding:0; box-sizing:border-box }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-      background: linear-gradient(135deg,#e0f7fa 0%,#bbdefb 100%);
-      min-height:100vh; padding:20px;
-      color:var(--dark);
-      display:flex; justify-content:center; align-items:center;
+      font-family:'Segoe UI',Tahoma,sans-serif;
+      background: linear-gradient(135deg,#e0f7fa,#bbdefb);
+      min-height:100vh; display:flex;
+      justify-content:center; align-items:center;
+      padding:20px; color:var(--dark);
     }
-    .container { max-width:900px; width:100%; margin:0 auto }
+    .container { max-width:900px; width:100%; }
     .card {
       background:var(--card-bg);
       border-radius:var(--border-radius);
       box-shadow:var(--box-shadow);
-      overflow:hidden;
+      overflow:hidden; margin-bottom:25px;
       transition:var(--transition);
-      margin-bottom:25px;
     }
     .card:hover {
       transform:translateY(-5px);
@@ -50,44 +46,44 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
     }
     .card-header {
       background:linear-gradient(to right,var(--primary),var(--secondary));
-      color:white; padding:1.8rem; text-align:center;
+      color:#fff; padding:1.8rem; text-align:center;
       border-bottom:1px solid rgba(255,255,255,0.1);
     }
     .card-header h1 {
-      font-size:2rem; margin:0;
-      display:flex; align-items:center; justify-content:center;
-      gap:15px; text-shadow:0 2px 4px rgba(0,0,0,0.2);
+      font-size:2rem; display:flex; gap:15px;
+      align-items:center; justify-content:center;
+      text-shadow:0 2px 4px rgba(0,0,0,0.2);
     }
-    .card-body { padding:2rem }
-    .form-group { margin-bottom:1.8rem }
+    .card-body { padding:2rem; }
+    .form-group { margin-bottom:1.8rem; }
     label {
       display:block; margin-bottom:0.8rem;
-      font-weight:600; color:var(--secondary); font-size:1.1rem;
+      font-weight:600; color:var(--secondary);
+      font-size:1.1rem;
     }
-    .input-container { position:relative }
     input {
       width:100%; padding:16px 22px;
       border:2px solid #dbe7f3; border-radius:var(--border-radius);
-      font-size:1.1rem; transition:var(--transition);
-      outline:none; background:var(--input-bg);
+      font-size:1.1rem; outline:none;
+      background:var(--input-bg);
       box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);
+      transition:var(--transition);
     }
     input:focus {
       border-color:var(--accent);
       box-shadow:0 0 0 4px rgba(67,97,238,0.2);
-      background:white;
+      background:#fff;
     }
     .input-hint {
-      display:block; margin-top:0.8rem;
-      font-size:0.95rem; color:#5a6c84; font-style:italic;
+      margin-top:0.8rem; font-size:0.95rem;
+      color:#5a6c84; font-style:italic;
     }
     .btn {
       display:block; width:100%; padding:16px;
       background:linear-gradient(to right,var(--primary),var(--secondary));
-      color:white; border:none; border-radius:var(--border-radius);
+      color:#fff; border:none; border-radius:var(--border-radius);
       font-size:1.2rem; font-weight:700;
       cursor:pointer; transition:var(--transition);
-      letter-spacing:0.5px;
       box-shadow:0 5px 15px rgba(67,97,238,0.3);
     }
     .btn:hover {
@@ -95,27 +91,27 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
       transform:translateY(-3px);
       box-shadow:0 8px 20px rgba(67,97,238,0.4);
     }
-    .btn:active { transform:translateY(0) }
     .examples {
-      background:linear-gradient(to right,rgba(76,201,240,0.1),rgba(67,97,238,0.1));
-      border-radius:var(--border-radius);
-      padding:1.5rem; margin-top:1.8rem;
+      margin-top:1.8rem; padding:1.5rem;
       border:1px dashed var(--primary);
+      border-radius:var(--border-radius);
+      background:rgba(76,201,240,0.1);
     }
     .examples-title {
       display:flex; align-items:center; gap:12px;
-      font-weight:700; color:var(--primary); margin-bottom:1rem;
-      font-size:1.1rem;
+      font-weight:700; color:var(--primary);
+      margin-bottom:1rem; font-size:1.1rem;
     }
     .example {
-      margin-bottom:0.8rem; font-size:1rem;
-      padding-left:10px; border-left:3px solid var(--primary);
+      margin-bottom:0.8rem; padding-left:10px;
+      border-left:3px solid var(--primary);
+      font-size:1rem;
     }
-    .example strong { color:var(--secondary); font-weight:700 }
+    .example strong { color:var(--secondary); }
     .error {
-      display:none;
+      display:none; padding:1.2rem;
       background:linear-gradient(to right,var(--danger),#c81e4d);
-      color:white; padding:1.2rem; border-radius:var(--border-radius);
+      color:#fff; border-radius:var(--border-radius);
       margin:1.8rem 0; text-align:center;
       animation:shake 0.6s ease; font-weight:600;
       box-shadow:0 5px 15px rgba(231,29,54,0.3);
@@ -125,111 +121,94 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
       20%,60%{transform:translateX(-8px)}
       40%,80%{transform:translateX(8px)}
     }
-    .result-container { display:none; animation:fadeIn 0.6s ease }
+    .result-container { display:none; animation:fadeIn 0.6s ease; }
     @keyframes fadeIn {
-      from{opacity:0;transform:translateY(30px)}
-      to{opacity:1;transform:translateY(0)}
+      from{opacity:0; transform:translateY(30px)}
+      to{opacity:1; transform:translateY(0)}
     }
     .timeline {
       display:flex; justify-content:space-between;
       position:relative; margin:2.5rem 0 3rem;
     }
     .timeline::before {
-      content:''; position:absolute; top:28px; left:0; right:0; height:4px;
+      content:''; position:absolute; top:28px; left:0; right:0;
+      height:4px;
       background:linear-gradient(to right,var(--primary),var(--accent));
-      z-index:1;border-radius:2px;
+      border-radius:2px; z-index:1;
     }
     .timeline-item {
-      text-align:center; z-index:2; position:relative; flex:1;
+      flex:1; text-align:center; position:relative; z-index:2;
     }
     .timeline-icon {
       width:56px; height:56px; border-radius:50%;
-      background:white; color:var(--primary);
+      background:#fff; color:var(--primary);
       display:flex; align-items:center; justify-content:center;
       margin:0 auto 12px; font-size:22px;
+      border:3px solid var(--primary);
       box-shadow:0 5px 15px rgba(0,0,0,0.15);
-      border:3px solid var(--primary); transition:var(--transition);
+      transition:var(--transition);
     }
     .timeline-item:hover .timeline-icon {
       transform:scale(1.1); background:var(--primary);
-      color:white; box-shadow:0 8px 20px rgba(67,97,238,0.4);
+      color:#fff; box-shadow:0 8px 20px rgba(67,97,238,0.4);
     }
     .timeline-time {
-      font-weight:800; font-size:1.5rem; color:var(--dark);
+      font-weight:800; font-size:1.5rem;
       margin-bottom:6px; text-shadow:0 1px 2px rgba(0,0,0,0.1);
     }
     .timeline-label {
-      font-size:1.1rem; color:var(--secondary); font-weight:700;
-      background:rgba(67,97,238,0.1); padding:6px 12px;
-      border-radius:20px; display:inline-block;
+      font-size:1.1rem; font-weight:700;
+      background:rgba(67,97,238,0.1);
+      padding:6px 12px; border-radius:20px;
+      color:var(--secondary);
     }
     .results {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:25px; margin:2.5rem 0;
     }
     .result-card {
-      background:linear-gradient(to bottom right,#4facfe 0%,#00f2fe 100%);
-      color:white; border-radius:var(--border-radius);
+      position:relative; overflow:hidden;
+      background:linear-gradient(45deg,#4facfe,#00f2fe);
+      border-radius:var(--border-radius);
       padding:1.8rem 1.5rem; text-align:center;
       box-shadow:0 8px 20px rgba(0,0,0,0.12);
-      transition:var(--transition); position:relative; overflow:hidden;
-    }
-    .result-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:5px;
-      background:rgba(255,255,255,0.5);
+      transition:var(--transition);
     }
     .result-card:hover {
       transform:translateY(-5px);
       box-shadow:0 12px 25px rgba(0,0,0,0.2);
     }
-    .result-card:nth-child(2) {
-      background:linear-gradient(to bottom right,#5b86e5 0%,#36d1dc 100%);
+    .result-card::before {
+      content:''; position:absolute; top:0; left:0; right:0;
+      height:5px; background:rgba(255,255,255,0.5);
     }
-    .result-card:nth-child(3) {
-      background:linear-gradient(to bottom right,#0072ff 0%,#00c6ff 100%);
-    }
-    .result-label {
-      font-size:1.25rem; font-weight:800; margin-bottom:0.8rem;
-      text-shadow:0 1px 3px rgba(0,0,0,0.2); letter-spacing:0.5px;
-    }
-    .result-value {
-      font-size:2.2rem; font-weight:800; letter-spacing:1px;
-      text-shadow:0 2px 4px rgba(0,0,0,0.2);
-    }
+    .result-label { font-size:1.25rem; font-weight:800; margin-bottom:0.8rem; }
+    .result-value { font-size:2.2rem; font-weight:800; }
     .total-hours {
       background:linear-gradient(to right,var(--success),#1a936f);
-      color:white; border-radius:var(--border-radius);
-      padding:2rem; text-align:center; margin:2.5rem 0 1.5rem;
+      color:#fff; border-radius:var(--border-radius);
+      padding:2rem; text-align:center;
       box-shadow:0 8px 20px rgba(0,0,0,0.12);
       position:relative; overflow:hidden;
     }
     .total-hours::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:5px;
-      background:rgba(255,255,255,0.5);
+      content:''; position:absolute; top:0; left:0; right:0;
+      height:5px; background:rgba(255,255,255,0.5);
     }
-    .total-label {
-      font-size:1.3rem; font-weight:700; margin-bottom:0.8rem;
-      text-shadow:0 1px 3px rgba(0,0,0,0.2);
-    }
-    .total-value {
-      font-size:2.8rem; font-weight:900; letter-spacing:1px;
-      text-shadow:0 3px 6px rgba(0,0,0,0.2);
-    }
+    .total-label { font-size:1.3rem; font-weight:700; margin-bottom:0.8rem; }
+    .total-value { font-size:2.8rem; font-weight:900; }
     .slider-container {
-      margin:2.5rem 0; padding:1.5rem; background:white;
-      border-radius:var(--border-radius); box-shadow:var(--box-shadow);
+      display:none; margin:2.5rem 0; padding:1.5rem;
+      background:#fff; border-radius:var(--border-radius);
+      box-shadow:var(--box-shadow);
     }
     .slider-header {
-      display:flex; justify-content:space-between; align-items:center;
-      margin-bottom:1.5rem;
+      display:flex; justify-content:space-between;
+      align-items:center; margin-bottom:1.5rem;
     }
-    .slider-title {
-      font-size:1.3rem; font-weight:700; color:var(--secondary);
-      display:flex; align-items:center; gap:10px;
-    }
-    .slider-value {
-      font-size:1.5rem; font-weight:800; color:var(--primary);
-    }
+    .slider-title { font-size:1.3rem; font-weight:700; display:flex; gap:10px; }
+    .slider-value { font-size:1.5rem; font-weight:800; }
     .slider-range {
       width:100%; height:10px; -webkit-appearance:none;
       appearance:none; background:var(--slider-bg);
@@ -242,34 +221,25 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
       box-shadow:0 2px 10px rgba(79,70,229,0.5);
       transition:var(--transition);
     }
-    .slider-range::-webkit-slider-thumb:hover {
-      transform:scale(1.1);
-    }
-    .slider-labels {
-      display:flex; justify-content:space-between;
-      margin-top:10px; font-size:0.9rem; color:var(--dark);
-      font-weight:500;
-    }
     .slider-result {
-      margin-top:1.5rem; padding:1rem;
-      background:rgba(67,97,238,0.1); border-radius:var(--border-radius);
-      text-align:center; font-size:1.1rem;
+      text-align:center; font-size:1.1rem; background:rgba(67,97,238,0.1);
+      padding:1rem; border-radius:var(--border-radius);
     }
-    .slider-result strong { color:var(--primary); font-weight:700 }
     .footer {
-      text-align:center; color:#5a6c84; font-size:0.95rem;
-      margin-top:1.5rem; padding:1rem; font-weight:500;
+      text-align:center; margin-top:1.5rem;
+      font-size:0.95rem; color:#5a6c84;
     }
     @media (max-width:768px) {
-      .timeline { flex-direction:column; gap:2.5rem }
-      .timeline::before { display:none }
-      .results { grid-template-columns:1fr }
-      .card-header h1 { font-size:1.6rem }
-      .card-body { padding:1.5rem }
+      .timeline { flex-direction:column; gap:2.5rem; }
+      .timeline::before { display:none; }
+      .results { grid-template-columns:1fr; }
+      .card-header h1 { font-size:1.6rem; }
+      .card-body { padding:1.5rem; }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
     <div class="card">
       <div class="card-header">
@@ -278,248 +248,217 @@ Ecco il file HTML completo con tutte le correzioni integrate. Copia e incolla tu
       <div class="card-body">
         <div class="form-group">
           <label for="timeInput">Inserisci i tuoi orari:</label>
-          <div class="input-container">
-            <input type="text" id="timeInput"
-                   placeholder="Es: E 09:27 U 12:24 E 12:56 oppure E 09:35 U 12:30 E 12:51 U 18:12"
-                   autofocus>
-          </div>
+          <input type="text" id="timeInput"
+                 placeholder="Es: E 09:27 U 12:24 E 12:56 oppure E 09:35 U 12:30 E 12:51 U 18:12"
+                 autofocus>
           <div class="input-hint">
-            Usa "E" per entrata e "U" per uscita, seguiti dall'orario nel formato HH:MM
+            Usa "E" per entrata e "U" per uscita, seguiti da HH:MM
           </div>
         </div>
-        <button id="calculateBtn" class="btn">
+        <button id="calculateBtn" class="btn" type="button">
           <i class="fas fa-calculator"></i> Calcola orari
         </button>
+
         <div class="examples">
           <div class="examples-title">
             <i class="fas fa-lightbulb"></i> Esempi di utilizzo
           </div>
           <div class="example">
-            <strong>Calcolo orari di uscita:</strong> E 08:30 U 13:00 E 14:00
+            <strong>Uscite:</strong> E 08:30 U 13:00 E 14:00
           </div>
           <div class="example">
-            <strong>Calcolo ore lavorate:</strong> E 08:45 U 13:15 E 14:30 U 18:10
+            <strong>Ore totali:</strong> E 08:45 U 13:15 E 14:30 U 18:10
           </div>
         </div>
+
         <div id="error" class="error"></div>
+
         <div id="resultContainer" class="result-container">
           <div class="timeline" id="timeline"></div>
-          <div id="sliderContainer" class="slider-container" style="display:none;">
+
+          <div id="sliderContainer" class="slider-container">
             <div class="slider-header">
               <div class="slider-title">
-                <i class="fas fa-sliders-h"></i> Simulatore orario di uscita
+                <i class="fas fa-sliders-h"></i> Simulatore uscita
               </div>
               <div class="slider-value" id="sliderTimeValue">--:--</div>
             </div>
-            <input type="range" min="0" max="420" value="210"
-                   class="slider-range" id="timeSlider">
+            <input type="range" id="timeSlider" class="slider-range" />
             <div class="slider-labels">
-              <span id="minTimeLabel">13:00</span>
+              <span id="minTimeLabel">--:--</span>
               <span id="maxTimeLabel">19:00</span>
             </div>
             <div class="slider-result">
               Se esci alle <strong id="selectedTime">--:--</strong>,
-              avrai lavorato <strong id="workedHours">--:--</strong> ore
+              hai lavorato <strong id="workedHours">--:--</strong>
             </div>
           </div>
+
           <div id="exitTimes">
-            <h2 style="text-align:center; margin-bottom:1.8rem; color:var(--secondary);">
+            <h2 style="text-align:center; color:var(--secondary); margin-bottom:1.8rem;">
               <i class="fas fa-door-open"></i> Orari di Uscita
             </h2>
             <div class="results">
               <div class="result-card">
-                <div class="result-label"><strong>6 ore lavorate</strong></div>
+                <div class="result-label">6 ore</div>
                 <div class="result-value" id="exit6">--:--</div>
               </div>
               <div class="result-card">
-                <div class="result-label"><strong>7 ore e 12 minuti</strong></div>
+                <div class="result-label">7h12m</div>
                 <div class="result-value" id="exit712">--:--</div>
               </div>
               <div class="result-card">
-                <div class="result-label"><strong>9 ore lavorate</strong></div>
+                <div class="result-label">9 ore</div>
                 <div class="result-value" id="exit9">--:--</div>
               </div>
             </div>
           </div>
+
           <div id="totalHours">
             <div class="total-hours">
-              <div class="total-label">Ore lavorate totali</div>
+              <div class="total-label">Ore totali</div>
               <div class="total-value" id="hoursTotal">--:--</div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <div class="footer">
-      Inserisci la sequenza di orari per calcolare quando puoi uscire o le ore effettivamente lavorate
+      Inserisci E-U-E per le uscite o E-U-E-U per le ore totali
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const timeInput      = document.getElementById('timeInput');
-      const calculateBtn   = document.getElementById('calculateBtn');
-      const errorDiv       = document.getElementById('error');
-      const resultContainer= document.getElementById('resultContainer');
-      const timeline       = document.getElementById('timeline');
-      const exitTimes      = document.getElementById('exitTimes');
-      const totalHours     = document.getElementById('totalHours');
-      const exit6          = document.getElementById('exit6');
-      const exit712        = document.getElementById('exit712');
-      const exit9          = document.getElementById('exit9');
-      const hoursTotal     = document.getElementById('hoursTotal');
-      const sliderContainer= document.getElementById('sliderContainer');
-      const timeSlider     = document.getElementById('timeSlider');
-      const sliderTimeValue= document.getElementById('sliderTimeValue');
-      const minTimeLabel   = document.getElementById('minTimeLabel');
-      const maxTimeLabel   = document.getElementById('maxTimeLabel');
-      const selectedTime   = document.getElementById('selectedTime');
-      const workedHours    = document.getElementById('workedHours');
+      const input     = document.getElementById('timeInput');
+      const btn       = document.getElementById('calculateBtn');
+      const err       = document.getElementById('error');
+      const resCont   = document.getElementById('resultContainer');
+      const exitDiv   = document.getElementById('exitTimes');
+      const totDiv    = document.getElementById('totalHours');
+      const tl        = document.getElementById('timeline');
+      const sCont     = document.getElementById('sliderContainer');
+      const slider    = document.getElementById('timeSlider');
+      const minLbl    = document.getElementById('minTimeLabel');
+      const maxLbl    = document.getElementById('maxTimeLabel');
+      const sVal      = document.getElementById('sliderTimeValue');
+      const selTime   = document.getElementById('selectedTime');
+      const wHours    = document.getElementById('workedHours');
+      const e6        = document.getElementById('exit6');
+      const e712      = document.getElementById('exit712');
+      const e9        = document.getElementById('exit9');
+      const hTot      = document.getElementById('hoursTotal');
 
-      let morningMinutes   = 0;
-      let lunchEndMinutes  = 0;
+      let mornMin = 0, lunchMin = 0;
 
-      calculateBtn.addEventListener('click', calculateTimes);
-      timeInput.addEventListener('keypress', e => {
-        if (e.key === 'Enter') calculateTimes();
-      });
-      timeSlider.addEventListener('input', updateSlider);
+      btn.addEventListener('click', calc);
+      input.addEventListener('keypress', e => { if(e.key==='Enter') btn.click(); });
+      slider.addEventListener('input', updateSlider);
 
-      function calculateTimes() {
-        const input = timeInput.value.trim();
-        [errorDiv, resultContainer, exitTimes, totalHours, sliderContainer].forEach(el => el.style.display = 'none');
-        if (!input) { showError('Per favore inserisci una sequenza di orari'); return; }
+      function calc() {
+        const str = input.value.trim();
+        [err, resCont, exitDiv, totDiv, sCont].forEach(el=>el.style.display='none');
+        if (!str) return showErr('Inserisci una sequenza di orari');
 
-        const tokens = input.split(/\s+/);
-        if (tokens.length % 2 !== 0) {
-          showError('Formato non valido. Il numero di elementi deve essere pari (es: E 09:00 U 13:00)');
-          return;
+        const tok = str.split(/\s+/);
+        if (tok.length%2!==0) return showErr('Numero di token dispari');
+
+        const ev = [];
+        for (let i=0; i<tok.length; i+=2) {
+          const t = tok[i].toUpperCase(), tm=tok[i+1];
+          if (!/^(E|U)$/.test(t)||!/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(tm))
+            return showErr('Formato errato, usa E/U + HH:MM');
+          ev.push({type:t,time:tm});
         }
 
-        const events = [];
-        for (let i = 0; i < tokens.length; i += 2) {
-          const type = tokens[i].toUpperCase();
-          const time = tokens[i + 1];
-          if ((type === 'E' || type === 'U') && isValidTime(time)) {
-            events.push({ type, time });
-          } else {
-            showError('Formato non valido. Usa "E" o "U" seguiti da orario nel formato HH:MM');
-            return;
-          }
+        if (ev.length===3 && ev[0].type==='E'&&ev[1].type==='U'&&ev[2].type==='E') {
+          calcExit(ev);
+          setupSlider(ev);
         }
-
-        if (events.length === 3 &&
-            events[0].type === 'E' &&
-            events[1].type === 'U' &&
-            events[2].type === 'E') {
-          calculateExitTimes(events);
-          setupSlider(events);
+        else if (ev.length===4 && ev[0].type==='E'&&ev[1].type==='U'&&ev[2].type==='E'&&ev[3].type==='U') {
+          calcTotal(ev);
         }
-        else if (events.length === 4 &&
-                 events[0].type === 'E' &&
-                 events[1].type === 'U' &&
-                 events[2].type === 'E' &&
-                 events[3].type === 'U') {
-          calculateTotalHours(events);
-        }
-        else {
-          showError('Sequenza non valida. Usa E-U-E per uscita o E-U-E-U per ore lavorate');
-        }
+        else showErr('Sequenza non valida');
       }
 
-      function isValidTime(time) {
-        return /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time);
-      }
-      function showError(msg) {
-        errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
-        errorDiv.style.display = 'block';
-      }
-      function timeToMinutes(t) {
-        const [h,m] = t.split(':').map(Number);
-        return h*60 + m;
-      }
-      function minutesToTime(mins) {
-        const h = Math.floor(mins/60);
-        const m = mins % 60;
-        return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}`;
+      function showErr(msg){
+        err.innerHTML=`<i class="fas fa-exclamation-triangle"></i> ${msg}`;
+        err.style.display='block';
       }
 
-      function calculateExitTimes(events) {
-        const e1 = timeToMinutes(events[0].time);
-        const u1 = timeToMinutes(events[1].time);
-        const e2 = timeToMinutes(events[2].time);
-        morningMinutes   = u1 - e1;
-        lunchEndMinutes  = e2;
-        const targets    = { exit6:360, exit712:432, exit9:540 };
-        exit6.textContent   = minutesToTime(e2 + (targets.exit6   - morningMinutes));
-        exit712.textContent = minutesToTime(e2 + (targets.exit712 - morningMinutes));
-        exit9.textContent   = minutesToTime(e2 + (targets.exit9   - morningMinutes));
-        updateTimeline(events);
-        exitTimes.style.display = 'block';
-        resultContainer.style.display = 'block';
+      function t2m(t) {
+        const [h,m]=t.split(':').map(Number);
+        return h*60+m;
+      }
+      function m2t(m){
+        const h=Math.floor(m/60), mm=m%60;
+        return `${h.toString().padStart(2,'0')}:${mm.toString().padStart(2,'0')}`;
       }
 
-      function setupSlider(events) {
-        const minM = lunchEndMinutes + 1;
-        const maxM = 19*60;
-        timeSlider.min   = minM;
-        timeSlider.max   = maxM;
-        timeSlider.value = minM + Math.floor((maxM - minM)/2);
-        minTimeLabel.textContent = minutesToTime(lunchEndMinutes);
-        maxTimeLabel.textContent = '19:00';
-        sliderContainer.style.display = 'block';
+      function calcExit(ev){
+        const e1=t2m(ev[0].time), u1=t2m(ev[1].time), e2=t2m(ev[2].time);
+        mornMin = u1-e1; lunchMin=e2;
+        e6.textContent   = m2t(e2 + (360  - mornMin));
+        e712.textContent = m2t(e2 + (432  - mornMin));
+        e9.textContent   = m2t(e2 + (540  - mornMin));
+        drawTimeline(ev);
+        exitDiv.style.display='block';
+        resCont.style.display='block';
+      }
+
+      function setupSlider(ev){
+        const minM = lunchMin+1, maxM=19*60;
+        slider.min=minM; slider.max=maxM;
+        slider.value=minM+Math.floor((maxM-minM)/2);
+        minLbl.textContent=m2t(lunchMin);
+        maxLbl.textContent='19:00';
+        sCont.style.display='block';
         updateSlider();
       }
 
-      function updateSlider() {
-        const selM = +timeSlider.value;
-        const aftM = selM - lunchEndMinutes;
-        const totM = morningMinutes + aftM;
-        sliderTimeValue.textContent = minutesToTime(selM);
-        selectedTime.textContent    = minutesToTime(selM);
-        workedHours.textContent     = minutesToTime(totM);
+      function updateSlider(){
+        const sel=+slider.value;
+        sVal.textContent=m2t(sel);
+        selTime.textContent=m2t(sel);
+        wHours.textContent=m2t(mornMin + (sel-lunchMin));
       }
 
-      function calculateTotalHours(events) {
-        const e1 = timeToMinutes(events[0].time);
-        const u1 = timeToMinutes(events[1].time);
-        const e2 = timeToMinutes(events[2].time);
-        const u2 = timeToMinutes(events[3].time);
-        const totM = (u1 - e1) + (u2 - e2);
-        hoursTotal.textContent = minutesToTime(totM);
-        updateTimeline(events);
-        totalHours.style.display = 'block';
-        resultContainer.style.display = 'block';
+      function calcTotal(ev){
+        const [e1,u1,e2,u2]=ev.map(o=>t2m(o.time));
+        hTot.textContent=m2t((u1-e1)+(u2-e2));
+        drawTimeline(ev);
+        totDiv.style.display='block';
+        resCont.style.display='block';
       }
 
-      function updateTimeline(events) {
-        timeline.innerHTML = '';
-        events.forEach((ev,i) => {
-          const item = document.createElement('div');
-          item.className = 'timeline-item';
-          const icon = document.createElement('div');
-          icon.className = 'timeline-icon';
-          if (i===0) icon.innerHTML = '<i class="fas fa-sign-in-alt"></i>';
-          else if (i===1) icon.innerHTML = '<i class="fas fa-utensils"></i>';
-          else if (i===2 && events.length===3) icon.innerHTML = '<i class="fas fa-mug-hot"></i>';
-          else icon.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
-          const timeLbl = document.createElement('div');
-          timeLbl.className = 'timeline-time';
-          timeLbl.textContent = ev.time;
-          const label = document.createElement('div');
-          label.className = 'timeline-label';
-          if (i===0) label.textContent = 'Entrata';
-          else if (i===1) label.textContent = 'Inizio pausa';
-          else if (i===2 && events.length===3) label.textContent = 'Fine pausa';
-          else label.textContent = 'Uscita';
-          item.append(icon, timeLbl, label);
-          timeline.appendChild(item);
+      function drawTimeline(ev){
+        tl.innerHTML='';
+        ev.forEach((o,i)=>{
+          const item=document.createElement('div');
+          item.className='timeline-item';
+          const ic=document.createElement('div');
+          ic.className='timeline-icon';
+          if(i===0)      ic.innerHTML='<i class="fas fa-sign-in-alt"></i>';
+          else if(i===1) ic.innerHTML='<i class="fas fa-utensils"></i>';
+          else if(i===2&&ev.length===3) ic.innerHTML='<i class="fas fa-mug-hot"></i>';
+          else           ic.innerHTML='<i class="fas fa-sign-out-alt"></i>';
+          const ti=document.createElement('div');
+          ti.className='timeline-time'; ti.textContent=o.time;
+          const la=document.createElement('div');
+          la.className='timeline-label';
+          if(i===0) la.textContent='Entrata';
+          else if(i===1) la.textContent='Inizio pausa';
+          else if(i===2&&ev.length===3) la.textContent='Fine pausa';
+          else la.textContent='Uscita';
+          item.append(ic,ti,la);
+          tl.appendChild(item);
         });
       }
 
-      // carica esempio
-      timeInput.value = "E 09:27 U 12:24 E 12:56";
-      timeInput.focus();
+      // esempio di default
+      input.value = 'E 09:27 U 12:24 E 12:56';
+      input.focus();
     });
   </script>
 </body>
