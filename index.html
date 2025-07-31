@@ -8,15 +8,18 @@
     <style>
         :root {
             --primary: #4361ee;
-            --secondary: #3f37c9;
-            --success: #4cc9f0;
-            --warning: #ff9e00;
-            --danger: #e63946;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
             --light: #f8f9fa;
             --dark: #212529;
-            --gray: #6c757d;
+            --success: #2ec4b6;
+            --warning: #ff9f1c;
+            --danger: #e71d36;
+            --card-bg: #ffffff;
+            --timeline-color: #4361ee;
+            --input-bg: #f1f5f9;
             --border-radius: 12px;
-            --box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
         }
         
@@ -28,7 +31,7 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
             min-height: 100vh;
             padding: 20px;
             color: var(--dark);
@@ -44,7 +47,7 @@
         }
         
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             overflow: hidden;
@@ -54,39 +57,41 @@
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
         
         .card-header {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
-            padding: 1.5rem;
+            padding: 1.8rem;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .card-header h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .card-body {
-            padding: 1.5rem;
+            padding: 2rem;
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--secondary);
+            font-size: 1.1rem;
         }
         
         .input-container {
@@ -95,77 +100,93 @@
         
         input {
             width: 100%;
-            padding: 14px 20px;
-            border: 2px solid #e0e0e0;
+            padding: 16px 22px;
+            border: 2px solid #dbe7f3;
             border-radius: var(--border-radius);
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: var(--transition);
             outline: none;
+            background: var(--input-bg);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
         }
         
         input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+            background: white;
         }
         
         .input-hint {
             display: block;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--gray);
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #5a6c84;
+            font-style: italic;
         }
         
         .btn {
             display: block;
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
             border: none;
             border-radius: var(--border-radius);
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
         
         .btn:hover {
             background: linear-gradient(to right, var(--secondary), var(--primary));
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
         }
         
         .examples {
-            background-color: rgba(67, 97, 238, 0.08);
+            background: linear-gradient(to right, rgba(76, 201, 240, 0.1), rgba(67, 97, 238, 0.1));
             border-radius: var(--border-radius);
-            padding: 1.25rem;
-            margin-top: 1.5rem;
+            padding: 1.5rem;
+            margin-top: 1.8rem;
+            border: 1px dashed var(--primary);
         }
         
         .examples-title {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 600;
+            gap: 12px;
+            font-weight: 700;
             color: var(--primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
         
         .example {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary);
         }
         
         .example strong {
             color: var(--secondary);
+            font-weight: 700;
         }
         
         .result-container {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -173,18 +194,19 @@
             display: flex;
             justify-content: space-between;
             position: relative;
-            margin: 2rem 0;
+            margin: 2.5rem 0 3rem;
         }
         
         .timeline::before {
             content: '';
             position: absolute;
-            top: 22px;
+            top: 28px;
             left: 0;
             right: 0;
-            height: 3px;
-            background: var(--primary);
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
             z-index: 1;
+            border-radius: 2px;
         }
         
         .timeline-item {
@@ -195,127 +217,182 @@
         }
         
         .timeline-icon {
-            width: 44px;
-            height: 44px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
-            background: var(--primary);
-            color: white;
+            background: white;
+            color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 10px;
-            font-size: 18px;
-            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+            margin: 0 auto 12px;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border: 3px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .timeline-item:hover .timeline-icon {
+            transform: scale(1.1);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
         }
         
         .timeline-time {
-            font-weight: 700;
-            font-size: 18px;
+            font-weight: 800;
+            font-size: 1.5rem;
             color: var(--dark);
+            margin-bottom: 6px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .timeline-label {
-            font-size: 14px;
-            color: var(--gray);
-            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 700;
+            background: rgba(67, 97, 238, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
         }
         
         .results {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 2rem 0;
+            gap: 25px;
+            margin: 2.5rem 0;
         }
         
         .result-card {
-            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(to bottom right, #4facfe 0%, #00f2fe 100%);
             color: white;
             border-radius: var(--border-radius);
-            padding: 1.5rem;
+            padding: 1.8rem 1.5rem;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+        
+        .result-card:nth-child(2) {
+            background: linear-gradient(to bottom right, #5b86e5 0%, #36d1dc 100%);
+        }
+        
+        .result-card:nth-child(3) {
+            background: linear-gradient(to bottom right, #0072ff 0%, #00c6ff 100%);
         }
         
         .result-label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
         }
         
         .result-value {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .total-hours {
-            background: linear-gradient(to right, #ff9e00, #ff6b00);
+            background: linear-gradient(to right, var(--success), #1a936f);
             color: white;
             border-radius: var(--border-radius);
-            padding: 1.5rem;
+            padding: 2rem;
             text-align: center;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2.5rem 0 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .total-hours::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
         }
         
         .total-label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
         
         .total-value {
-            font-size: 2rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 900;
             letter-spacing: 1px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.2);
         }
         
         .error {
             display: none;
-            background: linear-gradient(to right, var(--danger), #d90429);
+            background: linear-gradient(to right, var(--danger), #c81e4d);
             color: white;
-            padding: 1rem;
+            padding: 1.2rem;
             border-radius: var(--border-radius);
-            margin: 1.5rem 0;
+            margin: 1.8rem 0;
             text-align: center;
-            animation: shake 0.5s ease;
+            animation: shake 0.6s ease;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(231, 29, 54, 0.3);
         }
         
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
         }
         
         .info-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
-            background: rgba(255,255,255,0.2);
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.25);
             border-radius: 50%;
-            font-size: 14px;
+            font-size: 16px;
         }
         
         .footer {
             text-align: center;
-            color: var(--gray);
-            font-size: 0.9rem;
+            color: #5a6c84;
+            font-size: 0.95rem;
             margin-top: 1.5rem;
             padding: 1rem;
+            font-weight: 500;
         }
         
         @media (max-width: 768px) {
             .timeline {
-                flex-wrap: wrap;
-            }
-            
-            .timeline-item {
-                flex: 0 0 50%;
-                margin-bottom: 1.5rem;
+                flex-direction: column;
+                gap: 2.5rem;
             }
             
             .timeline::before {
@@ -327,7 +404,11 @@
             }
             
             .card-header h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -342,15 +423,15 @@
                 <div class="form-group">
                     <label for="timeInput">Inserisci i tuoi orari:</label>
                     <div class="input-container">
-                        <input type="text" id="timeInput" placeholder="Es: E 09:27 U 12:24 E 12:56 oppure E 09:35 U 12:30 E 12:51 U 18:12">
+                        <input type="text" id="timeInput" placeholder="Es: E 09:27 U 12:24 E 12:56 oppure E 09:35 U 12:30 E 12:51 U 18:12" autofocus>
                     </div>
                     <div class="input-hint">
-                        Usa "E" per entrata e "U" per uscita, seguiti dall'orario (HH:MM)
+                        Usa "E" per entrata e "U" per uscita, seguiti dall'orario nel formato HH:MM
                     </div>
                 </div>
                 
                 <button id="calculateBtn" class="btn">
-                    <i class="fas fa-calculator"></i> Calcola
+                    <i class="fas fa-calculator"></i> Calcola orari
                 </button>
                 
                 <div class="examples">
@@ -371,24 +452,24 @@
                 
                 <div id="resultContainer" class="result-container">
                     <div class="timeline" id="timeline">
-                        <!-- Timeline will be generated dynamically -->
+                        <!-- Timeline generata dinamicamente -->
                     </div>
                     
                     <div id="exitTimes">
-                        <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">
-                            Orari di uscita per fasce orarie
+                        <h2 style="text-align: center; margin-bottom: 1.8rem; color: var(--secondary);">
+                            <i class="fas fa-door-open"></i> Orari di Uscita
                         </h2>
                         <div class="results">
                             <div class="result-card">
-                                <div class="result-label">6 ore lavorate</div>
+                                <div class="result-label"><strong>6 ore lavorate</strong></div>
                                 <div class="result-value" id="exit6">--:--</div>
                             </div>
                             <div class="result-card">
-                                <div class="result-label">7 ore e 12 minuti</div>
+                                <div class="result-label"><strong>7 ore e 12 minuti</strong></div>
                                 <div class="result-value" id="exit712">--:--</div>
                             </div>
                             <div class="result-card">
-                                <div class="result-label">9 ore lavorate</div>
+                                <div class="result-label"><strong>9 ore lavorate</strong></div>
                                 <div class="result-value" id="exit9">--:--</div>
                             </div>
                         </div>
@@ -423,7 +504,7 @@
             const exit9 = document.getElementById('exit9');
             const hoursTotal = document.getElementById('hoursTotal');
             
-            // Focus on input when page loads
+            // Focus sull'input al caricamento della pagina
             timeInput.focus();
             
             calculateBtn.addEventListener('click', calculateTimes);
@@ -442,20 +523,20 @@
                 exitTimes.style.display = 'none';
                 totalHours.style.display = 'none';
                 
-                // Validate input
+                // Validazione input
                 if (!input) {
-                    showError('Inserisci una sequenza di orari');
+                    showError('Per favore inserisci una sequenza di orari');
                     return;
                 }
                 
-                // Parse input
+                // Parsing input
                 const tokens = input.split(/\s+/);
                 if (tokens.length % 2 !== 0) {
-                    showError('Formato non valido. Il numero di elementi deve essere pari');
+                    showError('Formato non valido. Il numero di elementi deve essere pari (es: E 09:00 U 13:00)');
                     return;
                 }
                 
-                // Parse events
+                // Parsing eventi
                 const events = [];
                 let isValid = true;
                 
@@ -472,26 +553,26 @@
                 }
                 
                 if (!isValid || events.length < 3) {
-                    showError('Formato non valido. Usa "E" o "U" seguiti da orario (es: E 09:30)');
+                    showError('Formato non valido. Usa "E" o "U" seguiti da orario nel formato HH:MM (es: E 09:30)');
                     return;
                 }
                 
-                // Process events
+                // Processamento eventi
                 if (events.length === 3 && 
                     events[0].type === 'E' && 
                     events[1].type === 'U' && 
                     events[2].type === 'E') {
-                    // Calculate exit times
+                    // Calcolo orari di uscita
                     calculateExitTimes(events);
                 } else if (events.length === 4 && 
                            events[0].type === 'E' && 
                            events[1].type === 'U' && 
                            events[2].type === 'E' && 
                            events[3].type === 'U') {
-                    // Calculate total hours
+                    // Calcolo ore lavorate
                     calculateTotalHours(events);
                 } else {
-                    showError('Sequenza non valida. Usa E-U-E per orari uscita o E-U-E-U per ore lavorate');
+                    showError('Sequenza non valida. Usa E-U-E per calcolare gli orari di uscita o E-U-E-U per calcolare le ore lavorate');
                 }
             }
             
@@ -518,20 +599,20 @@
             function calculateExitTimes(events) {
                 const [e1, u1, e2] = events.map(event => timeToMinutes(event.time));
                 
-                // Calculate morning minutes worked
+                // Calcolo minuti lavorati al mattino
                 const morningMinutes = u1 - e1;
                 
-                // Target minutes (6h, 7:12h, 9h)
-                const target6 = 360; // 6 hours
-                const target712 = 432; // 7 hours 12 minutes
-                const target9 = 540; // 9 hours
+                // Minuti obiettivo (6h, 7:12h, 9h)
+                const target6 = 360; // 6 ore
+                const target712 = 432; // 7 ore 12 minuti
+                const target9 = 540; // 9 ore
                 
-                // Calculate exit times
+                // Calcolo orari di uscita
                 const exit6Time = minutesToTime(e2 + (target6 - morningMinutes));
                 const exit712Time = minutesToTime(e2 + (target712 - morningMinutes));
                 const exit9Time = minutesToTime(e2 + (target9 - morningMinutes));
                 
-                // Update UI
+                // Aggiornamento UI
                 updateTimeline(events);
                 exit6.textContent = exit6Time;
                 exit712.textContent = exit712Time;
@@ -545,17 +626,17 @@
             function calculateTotalHours(events) {
                 const [e1, u1, e2, u2] = events.map(event => timeToMinutes(event.time));
                 
-                // Calculate total minutes worked
+                // Calcolo minuti lavorati totali
                 const morningMinutes = u1 - e1;
                 const afternoonMinutes = u2 - e2;
                 const totalMinutes = morningMinutes + afternoonMinutes;
                 
-                // Convert to HH:MM
+                // Conversione in HH:MM
                 const hours = Math.floor(totalMinutes / 60);
                 const minutes = totalMinutes % 60;
                 const totalTime = `${hours}:${minutes.toString().padStart(2, '0')}`;
                 
-                // Update UI
+                // Aggiornamento UI
                 updateTimeline(events);
                 hoursTotal.textContent = totalTime;
                 
@@ -567,18 +648,23 @@
             function updateTimeline(events) {
                 timeline.innerHTML = '';
                 
-                const labels = {
-                    'E': { icon: 'sign-in-alt', text: 'Entrata' },
-                    'U': { icon: 'sign-out-alt', text: 'Uscita' }
-                };
-                
                 events.forEach((event, index) => {
                     const item = document.createElement('div');
                     item.className = 'timeline-item';
                     
                     const icon = document.createElement('div');
                     icon.className = 'timeline-icon';
-                    icon.innerHTML = `<i class="fas fa-${labels[event.type].icon}"></i>`;
+                    
+                    // Icone personalizzate in base al tipo di evento
+                    if (index === 0) {
+                        icon.innerHTML = `<i class="fas fa-sign-in-alt"></i>`;
+                    } else if (index === 1) {
+                        icon.innerHTML = `<i class="fas fa-utensils"></i>`;
+                    } else if (index === 2) {
+                        icon.innerHTML = `<i class="fas fa-coffee"></i>`;
+                    } else {
+                        icon.innerHTML = `<i class="fas fa-sign-out-alt"></i>`;
+                    }
                     
                     const time = document.createElement('div');
                     time.className = 'timeline-time';
@@ -587,12 +673,16 @@
                     const label = document.createElement('div');
                     label.className = 'timeline-label';
                     
-                    if (index === 1) {
-                        label.textContent = 'Inizio pausa';
-                    } else if (index === 2 && events.length === 4) {
-                        label.textContent = 'Fine pausa';
-                    } else {
-                        label.textContent = labels[event.type].text;
+                    // Etichette personalizzate
+                    if (events.length === 3) {
+                        if (index === 0) label.textContent = 'Entrata';
+                        else if (index === 1) label.textContent = 'Inizio pausa pranzo';
+                        else if (index === 2) label.textContent = 'Fine pausa pranzo';
+                    } else if (events.length === 4) {
+                        if (index === 0) label.textContent = 'Entrata';
+                        else if (index === 1) label.textContent = 'Inizio pausa pranzo';
+                        else if (index === 2) label.textContent = 'Fine pausa pranzo';
+                        else if (index === 3) label.textContent = 'Uscita';
                     }
                     
                     item.appendChild(icon);
@@ -603,7 +693,7 @@
                 });
             }
             
-            // Example input for demo
+            // Esempio pre-caricato
             timeInput.value = "E 09:27 U 12:24 E 12:56";
         });
     </script>
