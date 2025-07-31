@@ -21,6 +21,8 @@
             --border-radius: 12px;
             --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
+            --slider-bg: #e0e7ff;
+            --slider-handle: #4f46e5;
         }
         
         * {
@@ -369,15 +371,85 @@
             40%, 80% { transform: translateX(8px); }
         }
         
-        .info-icon {
-            display: inline-flex;
+        /* Stili per lo slider */
+        .slider-container {
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            background: rgba(255,255,255,0.25);
+            margin-bottom: 1.5rem;
+        }
+        
+        .slider-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .slider-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .slider-range {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--slider-bg);
+            border-radius: 5px;
+            outline: none;
+            margin: 20px 0;
+        }
+        
+        .slider-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
-            font-size: 16px;
+            background: var(--slider-handle);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.5);
+            transition: var(--transition);
+        }
+        
+        .slider-range::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .slider-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .slider-result strong {
+            color: var(--primary);
+            font-weight: 700;
         }
         
         .footer {
@@ -455,6 +527,24 @@
                         <!-- Timeline generata dinamicamente -->
                     </div>
                     
+                    <!-- Slider per simulare l'orario di uscita -->
+                    <div id="sliderContainer" class="slider-container" style="display: none;">
+                        <div class="slider-header">
+                            <div class="slider-title">
+                                <i class="fas fa-sliders-h"></i> Simulatore orario di uscita
+                            </div>
+                            <div class="slider-value" id="sliderTimeValue">--:--</div>
+                        </div>
+                        <input type="range" min="0" max="420" value="210" class="slider-range" id="timeSlider">
+                        <div class="slider-labels">
+                            <span id="minTimeLabel">13:00</span>
+                            <span id="maxTimeLabel">19:00</span>
+                        </div>
+                        <div class="slider-result">
+                            Se esci alle <strong id="selectedTime">--:--</strong>, avrai lavorato <strong id="workedHours">--:--</strong> ore
+                        </div>
+                    </div>
+                    
                     <div id="exitTimes">
                         <h2 style="text-align: center; margin-bottom: 1.8rem; color: var(--secondary);">
                             <i class="fas fa-door-open"></i> Orari di Uscita
@@ -503,6 +593,18 @@
             const exit712 = document.getElementById('exit712');
             const exit9 = document.getElementById('exit9');
             const hoursTotal = document.getElementById('hoursTotal');
+            const sliderContainer = document.getElementById('sliderContainer');
+            const timeSlider = document.getElementById('timeSlider');
+            const sliderTimeValue = document.getElementById('sliderTimeValue');
+            const minTimeLabel = document.getElementById('minTimeLabel');
+            const maxTimeLabel = document.getElementById('maxTimeLabel');
+            const selectedTime = document.getElementById('selectedTime');
+            const workedHours = document.getElementById('workedHours');
+            
+            // Variabili per i calcoli
+            let morningMinutes = 0;
+            let lunchEndTime = 0;
+            let lunchEndMinutes = 0;
             
             // Focus sull'input al caricamento della pagina
             timeInput.focus();
@@ -514,6 +616,9 @@
                 }
             });
             
+            // Gestione dello slider
+            timeSlider.addEventListener('input', updateSlider);
+            
             function calculateTimes() {
                 const input = timeInput.value.trim();
                 
@@ -522,6 +627,7 @@
                 resultContainer.style.display = 'none';
                 exitTimes.style.display = 'none';
                 totalHours.style.display = 'none';
+                sliderContainer.style.display = 'none';
                 
                 // Validazione input
                 if (!input) {
@@ -564,6 +670,7 @@
                     events[2].type === 'E') {
                     // Calcolo orari di uscita
                     calculateExitTimes(events);
+                    setupSlider(events);
                 } else if (events.length === 4 && 
                            events[0].type === 'E' && 
                            events[1].type === 'U' && 
@@ -600,7 +707,9 @@
                 const [e1, u1, e2] = events.map(event => timeToMinutes(event.time));
                 
                 // Calcolo minuti lavorati al mattino
-                const morningMinutes = u1 - e1;
+                morningMinutes = u1 - e1;
+                lunchEndTime = e2;
+                lunchEndMinutes = timeToMinutes(e2);
                 
                 // Minuti obiettivo (6h, 7:12h, 9h)
                 const target6 = 360; // 6 ore
@@ -621,6 +730,45 @@
                 exitTimes.style.display = 'block';
                 totalHours.style.display = 'none';
                 resultContainer.style.display = 'block';
+            }
+            
+            function setupSlider(events) {
+                const lunchEnd = events[2].time;
+                const [hours, minutes] = lunchEnd.split(':').map(Number);
+                
+                // Imposta i limiti dello slider (dalla fine della pausa pranzo alle 19:00)
+                const minMinutes = hours * 60 + minutes + 1;
+                const maxMinutes = 19 * 60; // 19:00
+                
+                // Aggiorna le etichette dello slider
+                minTimeLabel.textContent = lunchEnd;
+                maxTimeLabel.textContent = '19:00';
+                
+                // Imposta i valori dello slider
+                timeSlider.min = minMinutes;
+                timeSlider.max = maxMinutes;
+                timeSlider.value = minMinutes + Math.floor((maxMinutes - minMinutes) / 2); // Valore medio
+                
+                // Mostra il container dello slider
+                sliderContainer.style.display = 'block';
+                
+                // Calcola il valore iniziale
+                updateSlider();
+            }
+            
+            function updateSlider() {
+                const selectedMinutes = parseInt(timeSlider.value);
+                const selectedTimeStr = minutesToTime(selectedMinutes);
+                
+                // Calcola le ore lavorate
+                const afternoonMinutes = selectedMinutes - lunchEndMinutes;
+                const totalMinutes = morningMinutes + afternoonMinutes;
+                const totalTimeStr = minutesToTime(totalMinutes);
+                
+                // Aggiorna l'UI
+                sliderTimeValue.textContent = selectedTimeStr;
+                selectedTime.textContent = selectedTimeStr;
+                workedHours.textContent = totalTimeStr;
             }
             
             function calculateTotalHours(events) {
@@ -655,14 +803,18 @@
                     const icon = document.createElement('div');
                     icon.className = 'timeline-icon';
                     
-                    // Icone personalizzate in base al tipo di evento
+                    // Icone personalizzate in base al tipo di evento e alla posizione
                     if (index === 0) {
+                        // Entrata
                         icon.innerHTML = `<i class="fas fa-sign-in-alt"></i>`;
                     } else if (index === 1) {
+                        // Inizio pausa pranzo - icona cibo
                         icon.innerHTML = `<i class="fas fa-utensils"></i>`;
                     } else if (index === 2) {
-                        icon.innerHTML = `<i class="fas fa-coffee"></i>`;
+                        // Fine pausa pranzo - icona caffè
+                        icon.innerHTML = `<i class="fas fa-mug-hot"></i>`;
                     } else {
+                        // Uscita
                         icon.innerHTML = `<i class="fas fa-sign-out-alt"></i>`;
                     }
                     
